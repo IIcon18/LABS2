@@ -15,6 +15,9 @@ public class Main {
         //#3
         System.out.println(getInitials("simonov sergei evgenievich"));
         System.out.println(getInitials("kozhevnikova tatiana vitalevna"));
+
+        //#6
+        System.out.println(camelToSnake("helloWorld!"));
     }
 
     //#1
@@ -64,10 +67,23 @@ public class Main {
         return a;
     }
 
-
-
     //#4
 
+    //#5
+
+    //#6
+    public static String camelToSnake(String str) {
+        String[] arr = str.split("(?=[A-Z])");
+        String a = "";
+        for (int i = 0; i < arr.length; i++) {
+            if (i == arr.length - 1) {
+                a += arr[i].toLowerCase();
+                break;
+            }
+            a += arr[i].toLowerCase() + "_";
+        }
+        return a;
+    }
 }
 
 
