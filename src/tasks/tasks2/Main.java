@@ -16,6 +16,11 @@ public class Main {
         System.out.println(getInitials("simonov sergei evgenievich"));
         System.out.println(getInitials("kozhevnikova tatiana vitalevna"));
 
+        //#4
+        System.out.println(Arrays.toString(normalizator(new double[]{3.5, 7.0, 1.5, 9.0, 5.5})));
+        //#5
+        System.out.println(Arrays.toString(compressedNums(new double[]{1.6, 0, 212.3, 34.8, 0, 27.5})));
+
         //#6
         System.out.println(camelToSnake("helloWorld!"));
 
@@ -152,7 +157,7 @@ public class Main {
             return 0;
         }
     }
-    
+
     //#10
     public static boolean isAnagram(String str1, String str2) {
 
