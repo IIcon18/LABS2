@@ -93,6 +93,24 @@ public class Main {
     }
 
     //#4
+    public static double[] normalizator(double[] arr) {
+        double max = 0;
+        double min = Integer.MAX_VALUE;
+        for (int i = 0; i  < arr.length ; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+        }
+       for (int i = 0; i < arr.length; i++) {
+           arr[i] = (arr[i] - min) / (max - min);
+           arr[i] = Math.round(arr[i] * 10000.0) / 10000.0;
+
+       }
+       return arr;
+    }
 
     //#5
     public static int[] compressedNums(double[] nums) {
