@@ -27,5 +27,6 @@ public class Main {
         motobike.sitPasanger("Катя");
         motobike.sitPasanger("Настя", "Соня");
         motobike.installMode();
+        System.out.println(motobike.toString());
     }
 }
