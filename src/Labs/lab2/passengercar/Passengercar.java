@@ -38,6 +38,7 @@ public class Passengercar extends Auto {
             System.out.println(i + "l");
             setFuel(i);
         }
+        System.out.println("Легковой автомобиль заправлен");
     }
 
     public void openTrunk() {
@@ -49,9 +50,11 @@ public class Passengercar extends Auto {
     }
 
     public void takeItems(String ... items){
+        itemsInTrunk = "";
         for (int i = 0; i < items.length; i++) {
             if(i == items.length - 1){
                 itemsInTrunk += items[i];
+                continue;
             }
             itemsInTrunk += items[i] + ",";
         }
@@ -80,5 +83,15 @@ public class Passengercar extends Auto {
 
     public void setTrunk(int trunk) {
         this.trunk = trunk;
+    }
+
+    @Override
+    public String toString() {
+        return "Passengercar{" +
+                "quantityFuel=" + quantityFuel +
+                ", backPassengers=" + backPassengers +
+                ", trunk=" + trunk +
+                ", itemsInTrunk='" + itemsInTrunk + '\'' +
+                '}';
     }
 }
