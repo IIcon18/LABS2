@@ -96,4 +96,14 @@ public class Motobike extends Auto {
     public void setPassenger(String passanger) {
         this.passenger = passanger;
     }
+
+    @Override
+    public String toString() {
+        return "Motobike{" +
+                "mode=" + mode +
+                ", year=" + year +
+                ", passenger='" + passenger + '\'' +
+                ", quantityFuel=" + quantityFuel +
+                '}';
+    }
 }
