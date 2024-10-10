@@ -3,13 +3,16 @@ package tasks.tasks3;
 public class Main {
     public static void main(String[] args) {
         //#1
+        System.out.println("#1");
         System.out.println(isStrangerPair("sparking", "groups"));
         System.out.println(isStrangerPair("bush", "hubris"));
         System.out.println(isStrangerPair("", ""));
         //#2
 
         //#3
-
+        System.out.println("#3");
+        System.out.println(successShoot(0, 0, 5, 2, 2));
+        System.out.println(successShoot(-2, -3, 4, 5, -6));
         //#4
 
         //#5
@@ -42,7 +45,11 @@ public class Main {
     //#2
 
     //#3
-
+    public static boolean successShoot(int x, int y, int r, int m, int n) {
+        int radiusSquared = r * r;
+        int distanceSquared = (m - x) * (m - x) + (n - y) * (n - y);
+        return distanceSquared <= radiusSquared;
+    }
     //#4
 
     //#5
