@@ -28,7 +28,9 @@ public class Main {
         System.out.println(rps("scissors", "paper"));
         //#6
         System.out.println("#6");
-
+        System.out.println(bagger(39));
+        System.out.println(bagger(999));
+        System.out.println(bagger(4));
         //#7
         System.out.println("#7");
 
@@ -40,7 +42,9 @@ public class Main {
 
         //#10
         System.out.println("#10");
-
+        System.out.println(doesBrickFit(1, 1, 1, 1, 1));
+        System.out.println(doesBrickFit(1, 2, 1, 1, 1));
+        System.out.println(doesBrickFit(1, 2, 2, 1, 1));
     }
     //#1
     public static boolean isStrangerPair(String s1, String s2) {
@@ -91,7 +95,20 @@ public class Main {
         }
     }
     //#6
-
+    public static int bagger(int num) {
+        int count = 0;
+        while (num >= 10) {
+            int composition = 1;
+            int temp = num;
+            while (temp > 0) {
+                composition *= temp % 10;
+                temp /= 10;
+            }
+            num = composition;
+            count++;
+        }
+        return count;
+    }
     //#7
 
     //#8
@@ -99,4 +116,7 @@ public class Main {
     //#9
 
     //#10
+    public static boolean doesBrickFit(int a, int b, int c, int w, int h) {
+        return (a <= w && b <= h) || (a <= h && b <= w) || (a <= w && c <= h) || (a <= h && c <= w) ||  (b <= w && c <= h) || (b <= h && c <= w);
+    }
 }
