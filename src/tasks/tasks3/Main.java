@@ -59,7 +59,12 @@ public class Main {
         return firstCondidtion && secondCondidtion;
     }
     //#2
-
+    public static boolean doesBrickFit(int a, int b, int c, int d, int e) {
+        if (a + b + c + d > e) {
+            return true;
+        }
+        return false;
+    }
     //#3
     public static boolean successShoot(int x, int y, int r, int m, int n) {
         int radiusSquared = r * r;
