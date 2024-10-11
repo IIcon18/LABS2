@@ -114,7 +114,7 @@ public class Main {
     //#8
 
     //#9
-
+    //сделать
     //#10
     public static boolean doesBrickFit(int a, int b, int c, int w, int h) {
         return (a <= w && b <= h) || (a <= h && b <= w) || (a <= w && c <= h) || (a <= h && c <= w) ||  (b <= w && c <= h) || (b <= h && c <= w);
