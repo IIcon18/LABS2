@@ -1,5 +1,7 @@
 package tasks.tasks3;
 
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
         //#1
@@ -9,7 +11,11 @@ public class Main {
         System.out.println(isStrangerPair("", ""));
         //#2
         System.out.println("#2");
-
+        Map<String, Integer> inventory = new HashMap<>();
+        inventory.put("Laptop", 124200);
+        inventory.put("Phone", 51450);
+        inventory.put("Headphones", 13800);
+        System.out.println(sale(inventory, 25));
         //#3
         System.out.println("#3");
         System.out.println(successShoot(0, 0, 5, 2, 2));
@@ -33,18 +39,23 @@ public class Main {
         System.out.println(bagger(4));
         //#7
         System.out.println("#7");
-
+        System.out.println(mostExpensive(new Object[][]{{"Скакалка", 550, 8}, {"Шлем", 3750, 4}, {"Мяч", 2900, 10}}));
         //#8
         System.out.println("#8");
-
+        System.out.println(longestUnique("abcba"));
+        System.out.println(longestUnique("bbb"));
         //#9
         System.out.println("#9");
-
+        System.out.println(isPrefix("automation", "auto-"));
+        System.out.println(isSuffix("arachnophobia", "-phobia"));
+        System.out.println(isPrefix("retrospect", "sub-"));
+        System.out.println(isSuffix("vocation", "-logy"));
         //#10
         System.out.println("#10");
         System.out.println(doesBrickFit(1, 1, 1, 1, 1));
         System.out.println(doesBrickFit(1, 2, 1, 1, 1));
         System.out.println(doesBrickFit(1, 2, 2, 1, 1));
+
     }
     //#1
     public static boolean isStrangerPair(String s1, String s2) {
@@ -59,7 +70,10 @@ public class Main {
         return firstCondidtion && secondCondidtion;
     }
     //#2
-
+    public static Map<String, Integer> sale(Map<String, Integer> map, int sale) {
+        map.replaceAll((k, v) -> v - v * sale / 100);
+        return map;
+    }
     //#3
     public static boolean successShoot(int x, int y, int r, int m, int n) {
         int radiusSquared = r * r;
@@ -110,11 +124,63 @@ public class Main {
         return count;
     }
     //#7
-
+    public static String mostExpensive(Object[][] arr) {
+        int max = 0;
+        String name = "";
+        for (Object[] objects : arr) {
+            int n = 1;
+            for (Object s : objects) {
+                if (s instanceof String) {
+                    name = (String) s;
+                }
+                if(s instanceof Integer) {
+                    n *= (int) s;
+                }
+            }
+            max = Math.max(max, n);
+        }
+        return "Наиб. общ. стоимость у предмета " + name + " - " + max;
+    }
     //#8
+    public static String longestUnique(String str) {
 
+        StringBuilder sb = new StringBuilder();
+        int size = 0;
+        int len = 0;
+        int max = 0;
+
+        Map<Integer, String> map = new HashMap<>();
+
+        Set<Character> set = new HashSet<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            set.add(str.charAt(i));
+            size++;
+
+            if(set.size() == size){
+                sb.append(str.charAt(i));
+                len++;
+            }else{
+                max = Math.max(max, len);
+                map.put(len, sb.toString());
+                sb = new StringBuilder();
+                set.clear();
+                size = 0;
+                len = 0;
+            }
+        }
+        return map.get(max);
+    }
     //#9
-    //сделать
+    public static boolean isPrefix(String word, String prefix) {
+        prefix = prefix.replace("-", "");
+        return word.startsWith(prefix);
+    }
+
+    public static boolean isSuffix(String word, String suffix) {
+        suffix = suffix.replace("-", "");
+        return word.endsWith(suffix);
+    }
     //#10
     public static boolean doesBrickFit(int a, int b, int c, int w, int h) {
         return (a <= w && b <= h) || (a <= h && b <= w) || (a <= w && c <= h) || (a <= h && c <= w) ||  (b <= w && c <= h) || (b <= h && c <= w);
