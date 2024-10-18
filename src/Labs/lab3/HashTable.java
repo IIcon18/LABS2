@@ -17,18 +17,6 @@ public class HashTable <K, V> {
         return (key == null) ? 0 : (key.hashCode() & 0x7fffffff) % table.length;
     }
 
-    private void resize() {
-        LinkedList<Entry<K, V>>[] oldTable = table;
-        table = new LinkedList[table.length * 2];
-        for (LinkedList<Entry<K, V>> list : oldTable) {
-            if (list != null) {
-                for (Entry<K, V> entry : list) {
-                    put(entry.getKey(), entry.getValue());
-                }
-            }
-        }
-    }
-
     public void put(K key, V value) {
         int index = hash(key);
         LinkedList<Entry<K, V>> bucket = table[index];
@@ -73,6 +61,18 @@ public class HashTable <K, V> {
             if (entry.getKey().equals(key)) {
                 bucket.remove(entry);
                 return;
+            }
+        }
+    }
+
+    private void resize() {
+        LinkedList<Entry<K, V>>[] oldTable = table;
+        table = new LinkedList[table.length * 2];
+        for (LinkedList<Entry<K, V>> list : oldTable) {
+            if (list != null) {
+                for (Entry<K, V> entry : list) {
+                    put(entry.getKey(), entry.getValue());
+                }
             }
         }
     }
