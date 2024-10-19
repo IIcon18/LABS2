@@ -13,7 +13,7 @@ public class HashTable <K, V> {
         size = 0;
     }
 
-    private int hash(Object key) {
+    private int hash(K key) {
         return (key == null) ? 0 : (key.hashCode() & 0x7fffffff) % table.length;
     }
 

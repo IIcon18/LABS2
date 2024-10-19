@@ -14,6 +14,7 @@ public class Main {
         System.out.println(table.toString());
         System.out.println(table.isEmpty());
 
+        //#2
         Hashtable<Integer, Book> table2 = new Hashtable<>();
         table2.put(325235642, new Book("Война и Мир", "Л.Н.Толстой", 7));
         table2.put(783879342, new Book( "Собачье Сердце", "М.А.Булгаков", 3));
