@@ -1,6 +1,7 @@
 package tasks.tasks4;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,14 +25,18 @@ public class Main {
 
         //#5
         System.out.println("#5");
-        System.out.println(shortHand("abbccc")); // "ab*2c*3"
-        System.out.println(shortHand("vvvvaajaaaaa")); // "v*4a*2ja*5"
+        System.out.println(shortHand("abbccc"));
+        System.out.println(shortHand("vvvvaajaaaaa"));
         //#6
         System.out.println("#6");
-
+        System.out.println(convertToRome(8));
+        System.out.println(convertToRome(1234));
+        System.out.println(convertToRome(52));
         //#7
         System.out.println("#7");
-
+        System.out.println(uniqueSubstring("31312131"));
+        System.out.println(uniqueSubstring("1111111"));
+        System.out.println(uniqueSubstring("12223234333"));
         //#8
         System.out.println("#8");
 
@@ -133,9 +138,61 @@ public class Main {
         return result.toString();
     }
     //#6
+    public static String convertToRome(int num) {
+        if (num < 1 || num > 1502) {
+            throw new IllegalArgumentException("Число должно быть в диапазоне от 1 до 1502");
+        }
 
+        int[] values = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] symbols = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+        StringBuilder roman = new StringBuilder();
+
+        for (int i = 0; i < values.length; i++) {
+            while (num >= values[i]) {
+                num -= values[i];
+                roman.append(symbols[i]);
+            }
+        }
+
+        return roman.toString();
+    }
     //#7
+    public static String uniqueSubstring(String input) {
+        HashMap<Character, Integer> charCount = new HashMap<>();
+        HashMap<Character, Integer> firstIndex = new HashMap<>();
 
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+            if (!firstIndex.containsKey(c)) {
+                firstIndex.put(c, i);
+            }
+        }
+
+        int maxCount = 0;
+        for (int count : charCount.values()) {
+            if (count > maxCount) {
+                maxCount = count;
+            }
+        }
+
+        int firstMaxIndex = -1;
+        for (Map.Entry<Character, Integer> entry : charCount.entrySet()) {
+            if (entry.getValue() == maxCount) {
+                int index = firstIndex.get(entry.getKey());
+                if (firstMaxIndex == -1 || index < firstMaxIndex) {
+                    firstMaxIndex = index;
+                }
+            }
+        }
+
+        if (firstMaxIndex % 2 == 0) {
+            return "чет";
+        } else {
+            return "нечет";
+        }
+    }
     //#8
 
     //#9
