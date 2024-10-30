@@ -1,7 +1,5 @@
 package tasks.tasks4;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,14 +13,15 @@ public class Main {
         System.out.println(bruteForce(2, 2));
         System.out.println(bruteForce(5, 3));
         //#3
-        /*
         System.out.println("#3");
-        System.out.println(encode(new int[]{3, 12, 7, 81, 52}, "MKIIT"));
-        System.out.println(decode("MTUCI","MKIIT"));
-        */
+        System.out.println(encode(new int[] {0, 31, 28, 10, 29}, "MKIIT"));
+        System.out.println(Arrays.toString(decode("MTUCI", "MKIIT")));
         //#4
         System.out.println("#4");
-
+        System.out.println(split("()()()"));
+        System.out.println(split("((()))"));
+        System.out.println(split("((()))(())()()(()())"));
+        System.out.println(split("((())())(()(()()))"));
         //#5
         System.out.println("#5");
         System.out.println(shortHand("abbccc"));
@@ -87,26 +86,40 @@ public class Main {
         }
     }
     //#3
-    /*
     public static String encode(int[] numbers, String key) {
-        StringBuilder encodedMessage = new StringBuilder();
-        for (int i = 0; i < numbers.length; i++) {
-            char encodedChar = (char) (numbers[i] ^ key.charAt(i % key.length()));
-            encodedMessage.append(encodedChar);
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < numbers.length ; i++) {
+            result.append((char) (numbers[i] ^ key.charAt(i % key.length())));
         }
-        return encodedMessage.toString();
+        return result.toString();
     }
 
-    public static int[] decode(String message, String key) {
-        int[] decodedNumbers = new int[message.length()];
-        for (int i = 0; i < message.length(); i++) {
-            decodedNumbers[i] = message.charAt(i) ^ key.charAt(i % key.length());
+    public static int[] decode(String encoded, String key) {
+        int[] result = new int[encoded.length()];
+        for (int i = 0; i < encoded.length(); i++) {
+            result[i] = encoded.charAt(i) ^ key.charAt(i % key.length());
         }
-        return decodedNumbers;
+        return result;
     }
-    */
     //#4
-
+    public static List<String> split(String str) {
+        List<String> result = new ArrayList<>();
+        int balace = 0;
+        StringBuilder sb = new StringBuilder();
+        for (char c : str.toCharArray()) {
+            sb.append(c);
+            if (c == '(') {
+                balace++;
+            } else if (c == ')') {
+                balace--;
+            }
+            if (balace == 0) {
+                result.add(sb.toString());
+                sb.setLength(0);
+            }
+        }
+        return result;
+    }
     //#5
     public static String shortHand(String input) {
         if (input == null || input.isEmpty()) {
