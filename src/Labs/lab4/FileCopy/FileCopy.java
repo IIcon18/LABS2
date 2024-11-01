@@ -4,8 +4,8 @@ import java.io.*;
 
 public class FileCopy {
     public static void main(String[] args) {
-        String ReaderPath = "C:\\Users\\ogkri\\IdeaProjects\\LABS2\\src\\Labs\\lab4\\FileCopy\\Reader.txt";
-        String WriterPath = "C:\\Users\\ogkri\\IdeaProjects\\LABS2\\src\\Labs\\lab4\\FileCopy\\Writer.txt";
+        String ReaderPath = "src\\Labs\\lab4\\FileCopy\\Reader.txt";
+        String WriterPath = "src\\Labs\\lab4\\FileCopy\\Writer.txt";
 
         try (BufferedReader reader = new BufferedReader(new FileReader(ReaderPath));
              BufferedWriter writer = new BufferedWriter(new FileWriter(WriterPath))) {
