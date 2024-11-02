@@ -2,12 +2,12 @@ package Labs.lab4;
 
 public class ArrayAverage {
     public static void main(String[] args) {
-        String[] arr = {"1", "2", "3", "4", "5"};
+        String[] arr = {"1", "2", "3", "4", "пять"};
         int sum = 0;
         int count = 0;
 
         try {
-            for (int i = 0; i <= arr.length; i++) {
+            for (int i = 0; i < arr.length; i++) {
                 int num = Integer.parseInt(arr[i]);
                 sum += num;
                 count++;

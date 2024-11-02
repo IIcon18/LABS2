@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ExceptionLogger {
-    private static final String LOG_FILE_PATH = "src\\Labs\\lab4\\EmailExeption\\exception_log.txt";
+    private static final String LOG_FILE_PATH = "src\\Labs\\lab4\\EmailExeption\\exceptionlog.txt";
 
     public static void logException(Exception e) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(LOG_FILE_PATH, true))) {
