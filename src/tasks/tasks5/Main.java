@@ -1,6 +1,7 @@
 package tasks.tasks5;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +40,9 @@ public class Main {
 
         //#8
         System.out.println("#8");
-
+        System.out.println(maxPossible(523, 76));
+        System.out.println(maxPossible(9132, 5564));
+        System.out.println(maxPossible(8732, 91255));
         //#9
         System.out.println("#9");
 
@@ -123,7 +126,35 @@ public class Main {
     //#7
 
     //#8
+    public static int maxPossible(int num1, int num2) {
+        // Преобразуем числа в строки
+        String str1 = String.valueOf(num1);
+        String str2 = String.valueOf(num2);
 
+        // Преобразуем строку второго числа в массив символов и сортируем его в порядке убывания
+        Character[] digits2 = str2.chars().mapToObj(c -> (char) c).toArray(Character[]::new);
+        Arrays.sort(digits2, Collections.reverseOrder());
+
+        // Создаем массив для результата
+        char[] result = str1.toCharArray();
+
+        // Индекс для прохода по отсортированным цифрам второго числа
+        int index2 = 0;
+
+        // Проходим по цифрам первого числа
+        for (int i = 0; i < result.length; i++) {
+            // Если есть еще цифры во втором числе и текущая цифра первого числа меньше текущей цифры второго числа
+            if (index2 < digits2.length && result[i] < digits2[index2]) {
+                // Заменяем цифру первого числа на цифру второго числа
+                result[i] = digits2[index2];
+                // Переходим к следующей цифре второго числа
+                index2++;
+            }
+        }
+
+        // Преобразуем массив символов обратно в строку и затем в число
+        return Integer.parseInt(new String(result));
+    }
     //#9
 
     //#10
