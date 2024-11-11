@@ -37,9 +37,9 @@ public class Main {
         System.out.println(longestRun(new int[]{3, 5, 7, 10, 15}));
         //#6
         System.out.println("#6");
-        System.out.println(takeDownAverage(new String[]{"95%", "83%", "90%", "87%", "88%", "93%"}));
-        System.out.println(takeDownAverage(new String[]{"10%"}));
-        System.out.println(takeDownAverage(new String[]{"53%", "79%"}));
+        System.out.println(takeDownAverage(new String[]{"95%", "83%", "90%", "87%", "88%", "93%"})); // "54%"
+        System.out.println(takeDownAverage(new String[]{"10%"})); // "0%"
+        System.out.println(takeDownAverage(new String[]{"53%", "79%"})); // "51%"
         //#7
         System.out.println("#7");
         System.out.println(canMove("Rook", "A8", "H8"));
@@ -149,18 +149,24 @@ public class Main {
         int total = 0;
         int count = scores.length;
 
+        // Суммируем все оценки
         for (String score : scores) {
             total += Integer.parseInt(score.replace("%", ""));
         }
 
+        // Вычисляем текущий средний балл
         double currentAverage = total / (double) count;
 
+        // Вычисляем новый средний балл, который должен быть на 5% ниже
         double newAverage = currentAverage - 5;
 
+        // Вычисляем, какой балл нужно получить, чтобы снизить средний балл на 5%
         double requiredScore = newAverage * (count + 1) - total;
 
+        // Округляем до ближайшего целого числа
         int roundedScore = (int) Math.round(requiredScore);
 
+        // Возвращаем результат в виде строки с символом "%"
         return roundedScore + "%";
     }
     //#7
