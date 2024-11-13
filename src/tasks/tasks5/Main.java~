@@ -1,12 +1,19 @@
 package tasks.tasks5;
 
+import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         //#1
         System.out.println("#1");
         System.out.println(sameLetterPattern("ABAB", "CDCD"));
@@ -28,7 +35,9 @@ public class Main {
         System.out.println(digitsCount(1289396387328L));
         //#4
         System.out.println("#4");
-
+        System.out.println(totalPoints(new String[]{"cat", "create", "sat"}, "caster"));
+        System.out.println(totalPoints(new String[]{"trance", "recant"}, "recant"));
+        System.out.println(totalPoints(new String[]{"dote", "dotes", "toes", "set", "dot", "dots", "sted"}, "tossed"));
         //#5
         System.out.println("#5");
         System.out.println(longestRun(new int[]{1, 2, 3, 5, 6, 7, 8, 9}));
@@ -37,9 +46,9 @@ public class Main {
         System.out.println(longestRun(new int[]{3, 5, 7, 10, 15}));
         //#6
         System.out.println("#6");
-        System.out.println(takeDownAverage(new String[]{"95%", "83%", "90%", "87%", "88%", "93%"})); // "54%"
-        System.out.println(takeDownAverage(new String[]{"10%"})); // "0%"
-        System.out.println(takeDownAverage(new String[]{"53%", "79%"})); // "51%"
+        System.out.println(takeDownAverage(new String[]{"95%", "83%", "90%", "87%", "88%", "93%"}));
+        System.out.println(takeDownAverage(new String[]{"10%"}));
+        System.out.println(takeDownAverage(new String[]{"53%", "79%"}));
         //#7
         System.out.println("#7");
         System.out.println(canMove("Rook", "A8", "H8"));
@@ -52,7 +61,9 @@ public class Main {
         System.out.println(maxPossible(8732, 91255));
         //#9
         System.out.println("#9");
-
+        System.out.println(timeDifference("Los Angeles", "April 1, 2011 23:23", "Canberra")); // "2011-4-2 17:23"
+        System.out.println(timeDifference("London", "July 31, 1983 23:01", "Rome")); // "1983-8-1 00:01"
+        System.out.println(timeDifference("New York", "December 31, 1970 13:40", "Beijing")); // "1971-1-1 02:40"
         //#10
         System.out.println("#10");
         System.out.println(isNew(3));
@@ -125,7 +136,53 @@ public class Main {
         }
     }
     //#4
+    public static int totalPoints(String[] guessedWords, String scrambledWord) {
+        int totalPoints = 0;
+        Map<Character, Integer> letterCount = getLetterCount(scrambledWord);
 
+        for (String word : guessedWords) {
+            if (canFormWord(word, letterCount)) {
+                totalPoints += getPointsForWord(word);
+            }
+        }
+
+        return totalPoints;
+    }
+
+    private static Map<Character, Integer> getLetterCount(String word) {
+        Map<Character, Integer> letterCount = new HashMap<>();
+        for (char c : word.toCharArray()) {
+            letterCount.put(c, letterCount.getOrDefault(c, 0) + 1);
+        }
+        return letterCount;
+    }
+
+    private static boolean canFormWord(String word, Map<Character, Integer> letterCount) {
+        Map<Character, Integer> tempCount = new HashMap<>(letterCount);
+        for (char c : word.toCharArray()) {
+            if (!tempCount.containsKey(c) || tempCount.get(c) == 0) {
+                return false;
+            }
+            tempCount.put(c, tempCount.get(c) - 1);
+        }
+        return true;
+    }
+
+    private static int getPointsForWord(String word) {
+        int length = word.length();
+        switch (length) {
+            case 3:
+                return 1;
+            case 4:
+                return 2;
+            case 5:
+                return 3;
+            case 6:
+                return 4 + 50;
+            default:
+                return 0;
+        }
+    }
     //#5
     public static int longestRun(int[] arr) {
         if (arr.length == 0) return 0;
@@ -149,24 +206,18 @@ public class Main {
         int total = 0;
         int count = scores.length;
 
-        // Суммируем все оценки
         for (String score : scores) {
             total += Integer.parseInt(score.replace("%", ""));
         }
 
-        // Вычисляем текущий средний балл
         double currentAverage = total / (double) count;
 
-        // Вычисляем новый средний балл, который должен быть на 5% ниже
         double newAverage = currentAverage - 5;
 
-        // Вычисляем, какой балл нужно получить, чтобы снизить средний балл на 5%
         double requiredScore = newAverage * (count + 1) - total;
 
-        // Округляем до ближайшего целого числа
         int roundedScore = (int) Math.round(requiredScore);
 
-        // Возвращаем результат в виде строки с символом "%"
         return roundedScore + "%";
     }
     //#7
@@ -215,8 +266,46 @@ public class Main {
         }
         return Integer.parseInt(new String(result));
     }
-    //#9
 
+    //#9
+    private static final Map<String, String> cityToZoneId = new HashMap<>();
+
+    static {
+        cityToZoneId.put("Los Angeles", "America/Los_Angeles");
+        cityToZoneId.put("New York", "America/New_York");
+        cityToZoneId.put("Caracas", "America/Caracas");
+        cityToZoneId.put("Buenos Aires", "America/Argentina/Buenos_Aires");
+        cityToZoneId.put("London", "Europe/London");
+        cityToZoneId.put("Rome", "Europe/Rome");
+        cityToZoneId.put("Moscow", "Europe/Moscow");
+        cityToZoneId.put("Tehran", "Asia/Tehran");
+        cityToZoneId.put("New Delhi", "Asia/Kolkata");
+        cityToZoneId.put("Beijing", "Asia/Shanghai");
+        cityToZoneId.put("Canberra", "Australia/Sydney");
+    }
+    public static String timeDifference(String cityA, String timestamp, String cityB) {
+        // Формат входной даты
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MMMM d, yyyy HH:mm");
+
+        // Парсим входную дату
+        LocalDateTime localDateTime = LocalDateTime.parse(timestamp, inputFormatter);
+
+        // Получаем ZoneId для городов
+        ZoneId zoneA = ZoneId.of(cityToZoneId.get(cityA));
+        ZoneId zoneB = ZoneId.of(cityToZoneId.get(cityB));
+
+        // Преобразуем LocalDateTime в ZonedDateTime для города A
+        ZonedDateTime zonedDateTimeA = ZonedDateTime.of(localDateTime, zoneA);
+
+        // Преобразуем время в город B
+        ZonedDateTime zonedDateTimeB = zonedDateTimeA.withZoneSameInstant(zoneB);
+
+        // Формат выходной даты
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-M-d HH:mm");
+
+        // Возвращаем отформатированную строку
+        return zonedDateTimeB.format(outputFormatter);
+    }
     //#10
     public static boolean isNew(int n) {
         for (int i = 1; i < n; i++) {

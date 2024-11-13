@@ -1,12 +1,19 @@
 package tasks.tasks5;
 
+import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         //#1
         System.out.println("#1");
         System.out.println(sameLetterPattern("ABAB", "CDCD"));
@@ -28,7 +35,9 @@ public class Main {
         System.out.println(digitsCount(1289396387328L));
         //#4
         System.out.println("#4");
-
+        System.out.println(totalPoints(new String[]{"cat", "create", "sat"}, "caster"));
+        System.out.println(totalPoints(new String[]{"trance", "recant"}, "recant"));
+        System.out.println(totalPoints(new String[]{"dote", "dotes", "toes", "set", "dot", "dots", "sted"}, "tossed"));
         //#5
         System.out.println("#5");
         System.out.println(longestRun(new int[]{1, 2, 3, 5, 6, 7, 8, 9}));
@@ -125,7 +134,53 @@ public class Main {
         }
     }
     //#4
+    public static int totalPoints(String[] guessedWords, String scrambledWord) {
+        int totalPoints = 0;
+        Map<Character, Integer> letterCount = getLetterCount(scrambledWord);
 
+        for (String word : guessedWords) {
+            if (canFormWord(word, letterCount)) {
+                totalPoints += getPointsForWord(word);
+            }
+        }
+
+        return totalPoints;
+    }
+
+    private static Map<Character, Integer> getLetterCount(String word) {
+        Map<Character, Integer> letterCount = new HashMap<>();
+        for (char c : word.toCharArray()) {
+            letterCount.put(c, letterCount.getOrDefault(c, 0) + 1);
+        }
+        return letterCount;
+    }
+
+    private static boolean canFormWord(String word, Map<Character, Integer> letterCount) {
+        Map<Character, Integer> tempCount = new HashMap<>(letterCount);
+        for (char c : word.toCharArray()) {
+            if (!tempCount.containsKey(c) || tempCount.get(c) == 0) {
+                return false;
+            }
+            tempCount.put(c, tempCount.get(c) - 1);
+        }
+        return true;
+    }
+
+    private static int getPointsForWord(String word) {
+        int length = word.length();
+        switch (length) {
+            case 3:
+                return 1;
+            case 4:
+                return 2;
+            case 5:
+                return 3;
+            case 6:
+                return 4 + 50;
+            default:
+                return 0;
+        }
+    }
     //#5
     public static int longestRun(int[] arr) {
         if (arr.length == 0) return 0;
@@ -209,8 +264,9 @@ public class Main {
         }
         return Integer.parseInt(new String(result));
     }
-    //#9
 
+    //#9
+    
     //#10
     public static boolean isNew(int n) {
         for (int i = 1; i < n; i++) {
