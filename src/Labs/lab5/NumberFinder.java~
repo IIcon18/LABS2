@@ -1,0 +1,28 @@
+package Labs.lab5;
+
+import java.util.regex.*;
+
+public class NumberFinder  {
+    public static void main(String[] args) {
+        String text = "The price of the product is ";
+
+        try {
+            Pattern pattern = Pattern.compile("\\$\\d+\\.\\d+");
+            Matcher matcher = pattern.matcher(text);
+
+            boolean found = false;
+            while (matcher.find()) {
+                System.out.println("Found: " + matcher.group());
+                found = true;
+            }
+
+            if (!found) {
+                System.out.println("No numbers found.");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid regular expression pattern: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+}

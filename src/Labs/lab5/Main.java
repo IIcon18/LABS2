@@ -53,7 +53,7 @@ public class Main {
     public static void passwordValidator(String password){
         try {
             if (password == null || password.isEmpty()) {
-                throw new IllegalArgumentException("Password1 cannot be null or empty.");
+                throw new IllegalArgumentException("Password cannot be null or empty.");
             }
 
             Pattern pattern = Pattern.compile("^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,16}$");
