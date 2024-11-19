@@ -55,9 +55,9 @@ public class Main {
         System.out.println(maxPossible(8732, 91255));
         //#9
         System.out.println("#9");
-        System.out.println(timeDifference("Los Angeles", "April 1, 2011 23:23", "Canberra")); // 2011-4-2 17:23
-        System.out.println(timeDifference("London", "July 31, 1983 23:01", "Rome")); // 1983-8-1 00:01
-        System.out.println(timeDifference("New York", "December 31, 1970 13:40", "Beijing")); // 1971-1-1 02:40
+        System.out.println(timeDifference("Los Angeles", "April 1, 2011 23:23", "Canberra"));
+        System.out.println(timeDifference("London", "July 31, 1983 23:01", "Rome"));
+        System.out.println(timeDifference("New York", "December 31, 1970 13:40", "Beijing"));
         //#10
         System.out.println("#10");
         System.out.println(isNew(3));
@@ -270,35 +270,29 @@ public class Main {
     private static final Map<String, Integer> CITY_OFFSETS = new HashMap<>();
 
     static {
-        CITY_OFFSETS.put("Los Angeles", -8 * 60); // -08:00 в минутах
-        CITY_OFFSETS.put("New York", -5 * 60);    // -05:00 в минутах
-        CITY_OFFSETS.put("Caracas", -4 * 60 - 30); // -04:30 в минутах
-        CITY_OFFSETS.put("Buenos Aires", -3 * 60); // -03:00 в минутах
-        CITY_OFFSETS.put("London", 0);             // 00:00 в минутах
-        CITY_OFFSETS.put("Rome", 1 * 60);          // +01:00 в минутах
-        CITY_OFFSETS.put("Moscow", 3 * 60);        // +03:00 в минутах
-        CITY_OFFSETS.put("Tehran", 3 * 60 + 30);   // +03:30 в минутах
-        CITY_OFFSETS.put("New Delhi", 5 * 60 + 30);// +05:30 в минутах
-        CITY_OFFSETS.put("Beijing", 8 * 60);       // +08:00 в минутах
-        CITY_OFFSETS.put("Canberra", 10 * 60);     // +10:00 в минутах
+        CITY_OFFSETS.put("Los Angeles", -8 * 60);
+        CITY_OFFSETS.put("New York", -5 * 60);
+        CITY_OFFSETS.put("Caracas", -4 * 60 - 30);
+        CITY_OFFSETS.put("Buenos Aires", -3 * 60);
+        CITY_OFFSETS.put("London", 0);
+        CITY_OFFSETS.put("Rome", 1 * 60);
+        CITY_OFFSETS.put("Moscow", 3 * 60);
+        CITY_OFFSETS.put("Tehran", 3 * 60 + 30);
+        CITY_OFFSETS.put("New Delhi", 5 * 60 + 30);
+        CITY_OFFSETS.put("Beijing", 8 * 60);
+        CITY_OFFSETS.put("Canberra", 10 * 60);
     }
 
     public static String timeDifference(String cityA, String timestamp, String cityB) {
-        // Шаблон для разбора строки даты
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MMMM d, yyyy HH:mm", Locale.US);
         LocalDateTime cityATime = LocalDateTime.parse(timestamp, inputFormatter);
 
-        // Смещения городов
         int offsetA = CITY_OFFSETS.getOrDefault(cityA, 0);
         int offsetB = CITY_OFFSETS.getOrDefault(cityB, 0);
 
-        // Перевод времени из cityA в UTC
         LocalDateTime utcTime = cityATime.minusMinutes(offsetA);
-
-        // Перевод времени в cityB
         LocalDateTime cityBTime = utcTime.plusMinutes(offsetB);
 
-        // Формат вывода
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-M-d HH:mm");
         return cityBTime.format(outputFormatter);
     }
