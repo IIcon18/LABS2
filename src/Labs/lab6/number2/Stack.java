@@ -1,7 +1,5 @@
 package Labs.lab6.number2;
 
-import java.util.Arrays;
-
 public class Stack<T> {
     private T[] data;
     private int size;
