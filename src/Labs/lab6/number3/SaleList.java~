@@ -31,7 +31,6 @@ public class SaleList {
 
 
     public void printProducts() {
-        System.out.println("Товары оставшиеся на складе - ");
         for (Sale sale : list) {
             System.out.println(sale.toString());
         }

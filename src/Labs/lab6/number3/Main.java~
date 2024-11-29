@@ -22,4 +22,3 @@ public class Main {
         System.out.println("Количество продаж товара Планшет - " + saleList.getSalesCount("Планшет"));
     }
 }
-
