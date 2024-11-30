@@ -21,7 +21,7 @@ public class TopWords {
 
         while (scanner.hasNext()) {
             String word = scanner.next().toLowerCase().replaceAll("[^a-zA-Zа-яА-Я0-9]", "");
-            if (!word.isEmpty()) { // Игнорируем пустые строки после очистки
+            if (!word.isEmpty()) {
                 wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
             }
         }

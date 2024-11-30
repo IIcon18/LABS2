@@ -36,9 +36,9 @@ public class Main {
         System.out.println("#7");
         //#8
         System.out.println("#8");
-        System.out.println(formula("6 * 4 = 24"));
-        System.out.println(formula("18 / 17 = 2"));
-        System.out.println(formula("16 * 10 = 160 = 14 + 120"));
+        System.out.println(formula("6 * 4 = 24")); // true
+        System.out.println(formula("18 / 17 = 2")); // false
+        System.out.println(formula("16 * 10 = 160 = 14 + 120")); // false
         //#9
         System.out.println("#9");
         //#10
