@@ -41,29 +41,29 @@ public class Main {
 
         //#5
         System.out.println("#5");
-        System.out.println(Arrays.toString(isExact(6)));        // [6, 3]
-        System.out.println(Arrays.toString(isExact(24)));       // [24, 4]
-        System.out.println(Arrays.toString(isExact(125)));      // []
-        System.out.println(Arrays.toString(isExact(720)));      // [720, 6]
-        System.out.println(Arrays.toString(isExact(1024)));     // []
-        System.out.println(Arrays.toString(isExact(40320)));    // [40320, 8]
+        System.out.println(Arrays.toString(isExact(6)));
+        System.out.println(Arrays.toString(isExact(24)));
+        System.out.println(Arrays.toString(isExact(125)));
+        System.out.println(Arrays.toString(isExact(720)));
+        System.out.println(Arrays.toString(isExact(1024)));
+        System.out.println(Arrays.toString(isExact(40320)));
 
         //#6
         System.out.println("#6");
-        System.out.println(fractions("0.(6)"));           // 2/3
-        System.out.println(fractions("1.(1)"));           // 10/9
-        System.out.println(fractions("3.(142857)"));      // 22/7
-        System.out.println(fractions("0.19(2367)"));      // 5343/27775
-        System.out.println(fractions("0.1097(3)"));       // 823/7500
+        System.out.println(fractions("0.(6)"));
+        System.out.println(fractions("1.(1)"));
+        System.out.println(fractions("3.(142857)"));
+        System.out.println(fractions("0.19(2367)"));
+        System.out.println(fractions("0.1097(3)"));
 
         //#7
         System.out.println("#7");
-        System.out.println(pilishString("33314444"));  // ➞ "333 1 4444"
-        System.out.println(pilishString("TOP"));       // ➞ "TOP"
-        System.out.println(pilishString("X"));         // ➞ "XXX"
-        System.out.println(pilishString(""));          // ➞ ""
-        System.out.println(pilishString("HOWINEEDADRINKALCOHOLICINNATUREAFTERTHEHEAVYLECTURESINVOLVINGQUANTUMMECHANICSA" +
-                "NDALLTHESECRETSOFTHEUNIVERSE"));// ➞ "HOW I NEED A DRINK ALCOHOLIC IN NATURE AFTER THE HEAVY LECTURES INVOLVING QUANTUM MECHANICS"
+        System.out.println(pilishString("33314444"));
+        System.out.println(pilishString("TOP"));
+        System.out.println(pilishString("X"));
+        System.out.println(pilishString(""));
+        System.out.println(pilishString("HOWINEEDADRINKALCOHOLICINNATUREAFTERTHEHEAVYLECTURESINVOLVINGQUANTUMMECHA" +
+                "NICSANDALLTHESECRETSOFTHEUNIVERSE"));
        
         //#8
         System.out.println("#8");
@@ -216,11 +216,11 @@ public class Main {
 
     private static int[] checkFactorial(int number, int n, int factorial) {
         if (factorial == number) {
-            return new int[]{number, n};  // Если факториал совпадает с числом
+            return new int[]{number, n};
         } else if (factorial > number) {
-            return new int[]{};  // Если текущий факториал превысил число
+            return new int[]{};
         } else {
-            return checkFactorial(number, n + 1, factorial * (n + 1));  // Рекурсивный вызов с увеличением n
+            return checkFactorial(number, n + 1, factorial * (n + 1));
         }
     }
 
@@ -276,7 +276,6 @@ public class Main {
             result.append(txt.substring(txtIndex, end)).append(" ");
             txtIndex = end;
         }
-
         return result.toString().trim();
     }
 
@@ -375,7 +374,6 @@ public class Main {
             }
             numberStr = createDescendant(numberStr);
         }
-
         return false;
     }
 
@@ -396,7 +394,6 @@ public class Main {
             int sum = Character.getNumericValue(str.charAt(i)) + Character.getNumericValue(str.charAt(i + 1));
             descendant.append(sum);
         }
-
         return descendant.toString();
     }
 }
