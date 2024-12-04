@@ -2,7 +2,7 @@ package Labs.lab7.number1;
 
 import java.util.concurrent.*;
 
-class SumTask implements Callable<Integer> {
+public class SumTask implements Callable<Integer> {
     private int [] array;
     private int start;
     private int end;
