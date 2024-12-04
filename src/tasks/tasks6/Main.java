@@ -1,56 +1,92 @@
 package tasks.tasks6;
 
 import java.util.*;
-
 import static java.lang.System.*;
+import java.math.BigInteger;
 
 
 public class Main {
     public static void main(String[] args) {
-        //#1
-        out.println("#1");
-        out.println(hiddenAnagram("My world evolves in a beautiful space called Tesh.", "sworn love lived"));
-        out.println(hiddenAnagram("An old west action hero actor", "Clint Eastwood"));
-        out.println(hiddenAnagram("Mr. Mojo Rising could be a song title", "Jim Morrison"));
-        out.println(hiddenAnagram("Banana? margaritas", "ANAGRAM"));
-        out.println(hiddenAnagram("D  e b90it->?$ (c)a r...d,,#~", "bad credit"));
-        out.println(hiddenAnagram("Bright is the moon", "Bongo mirth"));
+        //#1.
+        System.out.println("#1");
+        System.out.println(hiddenAnagram("My world evolves in a beautiful space called Tesh.", "sworn love lived"));
+        System.out.println(hiddenAnagram("An old west action hero actor", "Clint Eastwood"));
+        System.out.println(hiddenAnagram("Mr. Mojo Rising could be a song title", "Jim Morrison"));
+        System.out.println(hiddenAnagram("Banana? margaritas", "ANAGRAM"));
+        System.out.println(hiddenAnagram("D  e b90it->?$ (c)a r...d,,#~", "bad credit"));
+        System.out.println(hiddenAnagram("Bright is the moon", "Bongo mirth"));
+
         //#2
-        out.println("#2");
-        out.println(stripUrlParams("https://edabit.com?a=1&b=2&a=2"));
-        out.println(stripUrlParams("https://edabit.com?a=1&b=2&a=2", new String[]{"b"}));
-        out.println(stripUrlParams("https://edabit.com", new String[]{"b"}));
-        out.println(stripUrlParams("https://edabit.com?a=1&b=2&a=2", null));
+        System.out.println("#2");
+        System.out.println(stripUrlParams("https://edabit.com?a=1&b=2&a=2"));
+        System.out.println(stripUrlParams("https://edabit.com?a=1&b=2&a=2", new String[]{"b"}));
+        System.out.println(stripUrlParams("https://edabit.com", new String[]{"b"}));
+        System.out.println(stripUrlParams("https://edabit.com?a=1&b=2&a=2", null));
+
         //#3
         out.println("#3");
-        System.out.println(nicoCipher("myworldevolvesinhers", "tesh")); // "yowmledrovlvsnieesrh"
+        System.out.println(nicoCipher("myworldevolvesinhers", "tesh"));
         System.out.println(nicoCipher("andiloveherso", "tesha"));
         System.out.println(nicoCipher("mubashirhassan", "crazy"));
-        System.out.println(nicoCipher("edabitisamazing", "matt")); // "deabtiismaaznig "
+        System.out.println(nicoCipher("edabitisamazing", "matt"));
         System.out.println(nicoCipher("iloveher", "612345"));
+
         //#4
         out.println("#4");
+        System.out.println(Arrays.toString(twoProduct(new int[]{1, 2, 3, 9, 4, 5, 15, 3}, 45)));
+        System.out.println(Arrays.toString(twoProduct(new int[]{1, 2, 3, 9, 4, 15, 3, 5}, 45)));
+        System.out.println(Arrays.toString(twoProduct(new int[]{1, 2, -1, 4, 5, 6, 10, 7}, 20)));
+        System.out.println(Arrays.toString(twoProduct(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, 10)));
+        System.out.println(Arrays.toString(twoProduct(new int[]{100, 12, 4, 1, 2}, 15)));
+
         //#5
-        out.println("#5");
+        System.out.println("#5");
+        System.out.println(Arrays.toString(isExact(6)));        // [6, 3]
+        System.out.println(Arrays.toString(isExact(24)));       // [24, 4]
+        System.out.println(Arrays.toString(isExact(125)));      // []
+        System.out.println(Arrays.toString(isExact(720)));      // [720, 6]
+        System.out.println(Arrays.toString(isExact(1024)));     // []
+        System.out.println(Arrays.toString(isExact(40320)));    // [40320, 8]
+
         //#6
-        out.println("#6");
+        System.out.println("#6");
+        System.out.println(fractions("0.(6)"));           // 2/3
+        System.out.println(fractions("1.(1)"));           // 10/9
+        System.out.println(fractions("3.(142857)"));      // 22/7
+        System.out.println(fractions("0.19(2367)"));      // 5343/27775
+        System.out.println(fractions("0.1097(3)"));       // 823/7500
+
         //#7
-        out.println("#7");
+        System.out.println("#7");
+        System.out.println(pilishString("33314444"));  // ➞ "333 1 4444"
+        System.out.println(pilishString("TOP"));       // ➞ "TOP"
+        System.out.println(pilishString("X"));         // ➞ "XXX"
+        System.out.println(pilishString(""));          // ➞ ""
+        System.out.println(pilishString("HOWINEEDADRINKALCOHOLICINNATUREAFTERTHEHEAVYLECTURESINVOLVINGQUANTUMMECHANICSA" +
+                "NDALLTHESECRETSOFTHEUNIVERSE"));// ➞ "HOW I NEED A DRINK ALCOHOLIC IN NATURE AFTER THE HEAVY LECTURES INVOLVING QUANTUM MECHANICS"
+       
         //#8
-        out.println("#8");
-        out.println(formula("6 * 4 = 24"));
-        out.println(formula("18 / 17 = 2"));
-        out.println(formula("16 * 10 = 160 = 14 + 120"));
+        System.out.println("#8");
+        System.out.println(formula("6 * 4 = 24"));
+        System.out.println(formula("18 / 17 = 2"));
+        System.out.println(formula("16 * 10 = 160 = 14 + 120"));
+
         //#9
         out.println("#9");
+        System.out.println(isValid("aabbcd"));
+        System.out.println(isValid("aabbccddeefghi"));
+        System.out.println(isValid("abcdefghhgfedecba"));
+        System.out.println(isValid("abc"));
+        System.out.println(isValid("abcc"));
+
         //#10
-        out.println("#10");
-        out.println(palindromeDescendant(11211230));
-        out.println(palindromeDescendant(13001120));
-        out.println(palindromeDescendant(23336014));
-        out.println(palindromeDescendant(11));
-        out.println(palindromeDescendant(1234));
-        out.println(palindromeDescendant(15984245));
+        System.out.println("#10");
+        System.out.println(palindromeDescendant(11211230));
+        System.out.println(palindromeDescendant(13001120));
+        System.out.println(palindromeDescendant(23336014));
+        System.out.println(palindromeDescendant(11));
+        System.out.println(palindromeDescendant(1234));
+        System.out.println(palindromeDescendant(15984245));
     }
 
     //#1
@@ -127,34 +163,30 @@ public class Main {
             return String.join("&", remainingParams);
         }
     }
+
     //#3
     public static String nicoCipher(String message, String key) {
         int keyLength = key.length();
         int messageLength = message.length();
 
-        // Создание числового ключа на основе сортировки символов
         Character[] keyChars = new Character[keyLength];
         for (int i = 0; i < keyLength; i++) {
             keyChars[i] = key.charAt(i);
         }
-        // Сортировка ключа и сохранение индексов
         Integer[] order = new Integer[keyLength];
         for (int i = 0; i < keyLength; i++) {
             order[i] = i;
         }
         Arrays.sort(order, Comparator.comparingInt(o -> keyChars[o]));
 
-        // Заполнение сообщения до кратности длины ключа
         int rows = (int) Math.ceil((double) messageLength / keyLength);
         char[][] matrix = new char[rows][keyLength];
-        Arrays.fill(matrix[rows - 1], ' ');  // Заполнение пробелами последней строки
+        Arrays.fill(matrix[rows - 1], ' ');
 
-        // Заполнение матрицы символами сообщения
         for (int i = 0; i < messageLength; i++) {
             matrix[i / keyLength][i % keyLength] = message.charAt(i);
         }
 
-        // Создание закодированного сообщения
         StringBuilder encodedMessage = new StringBuilder();
         for (int i = 0; i < rows; i++) {
             for (int col : order) {
@@ -164,13 +196,89 @@ public class Main {
 
         return encodedMessage.toString();
     }
+
     //#4
+    public static int[] twoProduct(int[] arr, int n) {
+        for (int i = 1; i < arr.length; i++) {
+            for (int j = 0; j < i; j++) {
+                if (arr[i] * arr[j] == n) {
+                    return new int[]{arr[j], arr[i]};
+                }
+            }
+        }
+        return new int[]{};
+    }
 
     //#5
+    public static int[] isExact(int number) {
+        return checkFactorial(number, 1, 1);
+    }
+
+    private static int[] checkFactorial(int number, int n, int factorial) {
+        if (factorial == number) {
+            return new int[]{number, n};  // Если факториал совпадает с числом
+        } else if (factorial > number) {
+            return new int[]{};  // Если текущий факториал превысил число
+        } else {
+            return checkFactorial(number, n + 1, factorial * (n + 1));  // Рекурсивный вызов с увеличением n
+        }
+    }
 
     //#6
+    public static String fractions(String decimal) {
+        if (!decimal.contains("(")) return decimal;
+
+        String[] parts = decimal.split("\\.");
+        String nonRepeating = "";
+        String repeating = "";
+
+        if (parts[1].contains("(")) {
+            String beforeParentheses = parts[1].split("\\(")[0];
+            repeating = parts[1].split("\\(")[1].replace(")", "");
+            nonRepeating = beforeParentheses;
+        }
+
+        int lenNonRepeat = nonRepeating.length();
+        int lenRepeat = repeating.length();
+
+        long numerator = Long.parseLong(nonRepeating + repeating) - (nonRepeating.isEmpty() ? 0 : Long.parseLong(nonRepeating));
+        long denominator = (long) (Math.pow(10, lenNonRepeat + lenRepeat) - Math.pow(10, lenNonRepeat));
+        long gcd = BigInteger.valueOf(numerator).gcd(BigInteger.valueOf(denominator)).longValue();
+        numerator /= gcd;
+        denominator /= gcd;
+
+        return numerator + "/" + denominator;
+    }
 
     //#7
+    public static String pilishString(String txt) {
+        if (txt.isEmpty()) return "";
+
+        int[] piDigits = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7, 9};
+        StringBuilder result = new StringBuilder();
+        int txtIndex = 0;
+
+        for (int piDigit : piDigits) {
+            if (txtIndex >= txt.length()) break;
+
+            int end = txtIndex + piDigit;
+            if (end > txt.length()) {
+                end = txt.length();
+                String word = txt.substring(txtIndex, end);
+                char lastChar = word.charAt(word.length() - 1);
+                while (word.length() < piDigit) {
+                    word += lastChar;
+                }
+                result.append(word).append(" ");
+                break;
+            }
+
+            result.append(txt.substring(txtIndex, end)).append(" ");
+            txtIndex = end;
+        }
+
+        return result.toString().trim();
+    }
 
     //#8
     public static boolean formula(String formula) {
@@ -222,7 +330,36 @@ public class Main {
         }
         return result;
     }
+
     //#9
+    public static String isValid(String str) {
+        Map<Character, Integer> charCount = new HashMap<>();
+
+        for (char c : str.toCharArray()) {
+            charCount.put(c, charCount.getOrDefault(c, 0) + 1);
+        }
+
+        Map<Integer, Integer> frequencyCount = new HashMap<>();
+        for (int freq : charCount.values()) {
+            frequencyCount.put(freq, frequencyCount.getOrDefault(freq, 0) + 1);
+        }
+
+        if (frequencyCount.size() == 1) {
+            return "YES";
+        }
+
+        if (frequencyCount.size() == 2) {
+            List<Integer> keys = new ArrayList<>(frequencyCount.keySet());
+            int freq1 = keys.get(0);
+            int freq2 = keys.get(1);
+
+            if ((frequencyCount.get(freq1) == 1 && (freq1 - 1 == freq2 || freq1 - 1 == 0)) ||
+                    (frequencyCount.get(freq2) == 1 && (freq2 - 1 == freq1 || freq2 - 1 == 0))) {
+                return "YES";
+            }
+        }
+        return "NO";
+    }
 
     //#10
     public static boolean palindromeDescendant(int num) {
