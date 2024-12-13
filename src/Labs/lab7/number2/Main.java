@@ -15,14 +15,12 @@ public class Main {
         ExecutorService executor = Executors.newFixedThreadPool(numRows);
         Future<Integer>[] futures = new Future[numRows];
 
-        // Запуск задач для каждой строки матрицы
         for (int i = 0; i < numRows; i++) {
             futures[i] = executor.submit(new MaxTask(matrix[i]));
         }
 
         int globalMax = Integer.MIN_VALUE;
 
-        // Получение результатов и определение глобального максимума
         for (Future<Integer> future : futures) {
             try {
                 int rowMax = future.get();

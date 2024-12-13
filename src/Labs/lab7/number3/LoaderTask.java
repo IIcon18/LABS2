@@ -16,23 +16,22 @@ public class LoaderTask implements Runnable {
             int totalWeight = 0;
             LinkedList<Product> load = new LinkedList<>();
 
-            while (totalWeight < 50) {
+            while (totalWeight < 100) {
                 Product product = warehouse.getProduct();
-                if (product == null) break;  // Если товаров больше нет
-                if (totalWeight + product.getWeight() >= 300) {
-                    warehouse.getProduct();  // Положить товар обратно
+                if (product == null) break;
+                if (totalWeight + product.getWeight() >= 500) {
+                    warehouse.getProduct();
                     break;
                 }
                 load.add(product);
                 totalWeight += product.getWeight();
             }
 
-            if (load.isEmpty()) break;  // Если товаров больше нет
+            if (load.isEmpty()) break;
 
             System.out.println(name + " перенёс товары: " + load + ". Общий вес: " + totalWeight + " кг");
 
             try {
-                // Имитация времени переноса на другой склад
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -40,3 +39,4 @@ public class LoaderTask implements Runnable {
         }
     }
 }
+
