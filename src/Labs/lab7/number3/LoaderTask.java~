@@ -19,7 +19,7 @@ public class LoaderTask implements Runnable {
             while (totalWeight < 100) {
                 Product product = warehouse.getProduct();
                 if (product == null) break;
-                if (totalWeight + product.getWeight() >= 300) {
+                if (totalWeight + product.getWeight() >= 150) {
                     warehouse.getProduct();
                     break;
                 }
