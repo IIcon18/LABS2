@@ -1,0 +1,18 @@
+Hello, World!
+Java is fun
+Data processing with annotations
+Parallel data handling in Java
+Efficient computation with concurrency
+Skip this line for deletion
+Advanced Java concepts
+Lambda expressions and functional programming
+Skip these lines for testing purposes
+Handling large datasets in memory
+Data structures and algorithms
+Understanding streams in Java
+Concurrency and thread safety
+Skip this line too
+Working with collections and generics
+Exploring design patterns
+Effective Java coding practices
+Skip it for now
