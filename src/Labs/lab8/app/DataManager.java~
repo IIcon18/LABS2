@@ -12,6 +12,7 @@ public class DataManager {
     private List<Object> processorInstances = new ArrayList<>();
     private List<String> data = new ArrayList<>();
 
+    // Регистрация обработчиков
     public void registerDataProcessor(Object processor) {
         for (Method method : processor.getClass().getDeclaredMethods()) {
             if (method.isAnnotationPresent(DataProcessor.class)) {
@@ -21,6 +22,7 @@ public class DataManager {
         }
     }
 
+    // Загрузка данных из файла
     public void loadData() {
         String filePath = "src\\Labs\\lab8\\data\\input.txt";
         try {
@@ -32,8 +34,10 @@ public class DataManager {
         }
     }
 
+    // Обработка данных с использованием Stream API
     public void processData() {
-        data = data.parallelStream()
+        // Используем Stream API для обработки данных с многозадачностью
+        data = data.parallelStream() // Используем parallelStream для параллельной обработки
                 .map(item -> {
                     if (item != null) {
                         String current = item;
@@ -50,10 +54,11 @@ public class DataManager {
                     }
                     return null;
                 })
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+                .filter(Objects::nonNull) // Убираем null-значения из результата
+                .collect(Collectors.toList()); // Собираем обработанные данные в список
     }
 
+    // Сохранение обработанных данных
     public void saveData() {
         String filePath = "C:\\Users\\ogkri\\IdeaProjects\\LABS2\\src\\Labs\\lab8\\data\\output.txt";
         try {

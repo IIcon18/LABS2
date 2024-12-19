@@ -4,9 +4,9 @@ public class DataTransformer {
     @DataProcessor
     public String transform(String data) {
         if (data == null) {
-            return ""; // Возвращаем пустую строку, если данные null
+            return "";
         }
-        return data.toUpperCase(); // Преобразуем в верхний регистр
+        return data.toUpperCase();
     }
 }
 
